@@ -1,33 +1,12 @@
-<!--<html>
-    <head>
-        <title>
-
-         </title>
-    </head>
-    <body>
-       <p>Hola mundo desde mi primer vista Ricardo Aldair Puente Reyes</p>
-    </body>
-</html> -->
-<!-- Añadido el 27-09-22 -->
 @extends('layouts.app')
-@section('title','Trainers')
+@section('title', 'Trainers Edit')
 @section('content')
-    <form class="form-group" method="POST" action="{{action('TrainerController@update', $trainer->id)}}"
-     enctype="multipart/form-data">
-     @method('PUT')
-    @csrf
-     <div clas="form-group">
-        <label for="">Nombre:</label>
-        <input type="text" name="name" value="{{$trainer->name}}"class="form-control">
-        <label for="">Apellido</label>
-        <input type="text" name="Apellido" value="{{$trainer->Apellido}}"class="form-control">
-</div>
-<div class="form-group">
-    <label for="">Avatar:</label>
-    <input type="file"name="avatar" value="{{$trainer->Avatar}}">
+{!!Form::model($trainer,['route'=>['trainers.update',$trainer],
+     'method'=>'PUT','files'=>true])!!}
 
-</div>
-<button type="submit"class="btn btn-primary">
-    Editar</button>
-</form>
+<div class="form-group">
+@include("form")
+
+{{Form::submit('Actualizar',['class'=>'btn btn-primary'])}}
+{!!Form::close()!!}
 @endsection
